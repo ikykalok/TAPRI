@@ -1,0 +1,30 @@
+/* ------------------------------------------------------------------
+   BR-TAPRI — page-scoped styles (tokens in app/globals.css)
+   ------------------------------------------------------------------ */
+@keyframes tapri-hint { 0% { transform: translateY(-100%); } 100% { transform: translateY(250%); } }
+@keyframes tapri-wave { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes tapri-steam { 0% { opacity: 0; transform: translateY(6px); } 40% { opacity: 1; } 100% { opacity: 0; transform: translateY(-8px); } }
+@keyframes tapri-still-in { from { opacity: 0; transform: translateY(10px) scale(0.98); } to { opacity: 1; transform: none; } }
+.tapri-still-in { animation: tapri-still-in 0.9s var(--ease-expo) both; }
+
+/* die-cut stickers in the story */
+.tapri-sticker { width: clamp(118px, 12vw, 176px); aspect-ratio: 1; will-change: transform, opacity; filter: drop-shadow(0 14px 18px rgba(50, 24, 6, 0.26)); }
+.tapri-sticker > .face { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; overflow: hidden; }
+.tapri-sticker > .face::after { content: ""; position: absolute; inset: -40%; background: linear-gradient(115deg, transparent 40%, rgba(255, 255, 255, 0.55) 50%, transparent 60%); transform: translateX(var(--sheen, -120%)); pointer-events: none; }
+.tapri-sticker[data-shape="burst"] > .face { clip-path: polygon(50% 0%, 61% 12%, 77% 6%, 80% 22%, 96% 26%, 89% 41%, 100% 54%, 86% 63%, 90% 79%, 74% 80%, 68% 96%, 54% 88%, 40% 99%, 32% 84%, 16% 88%, 16% 71%, 1% 64%, 11% 50%, 2% 36%, 18% 30%, 18% 13%, 34% 16%); }
+.tapri-sticker[data-shape="circle"] > .face { border-radius: 50%; }
+.tapri-sticker[data-shape="pill"] { aspect-ratio: 1.7; width: clamp(150px, 15vw, 220px); }
+.tapri-sticker[data-shape="pill"] > .face { border-radius: 999px; }
+.tapri-sticker[data-shape="square"] > .face { border-radius: 22%; }
+.tapri-sticker .edge { position: absolute; inset: 5px; border: 2px dashed currentColor; opacity: 0.35; border-radius: inherit; }
+
+.tapri-no-scrollbar { scrollbar-width: none; }
+.tapri-no-scrollbar::-webkit-scrollbar { display: none; }
+
+/* a biscuit's scalloped edge along the top of a section */
+.tapri-scallop { position: absolute; inset-inline: 0; bottom: 100%; margin-bottom: -1px; height: clamp(14px, 2vw, 28px); pointer-events: none; }
+
+/* hold-to-dunk button */
+.tapri-hold { touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+
+@media (prefers-reduced-motion: reduce) { .tapri-still-in { animation: none; } }

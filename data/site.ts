@@ -1,0 +1,111 @@
+/**
+ * BR-TAPRI — a chai café in Fort, Mumbai.
+ * BR-Tapri and all copy, numbers, prices, hours and reviews are placeholder showcase content.
+ */
+export const brand = {
+  name: "BR-Tapri",
+  wordmark: "BR-TAPRI",
+  short: "TAPRI",
+  product: "Chai café",
+  tagline: "First, chai.",
+  place: "Fort, Mumbai",
+  address: "14 Homi Mody Street, Fort, Mumbai 400001",
+  phone: "+91 22 5550 0142",
+  hours: "6 am – 11 pm, every day",
+} as const;
+
+export const nav = [
+  { label: "The chai", href: "#story" },
+  { label: "Menu", href: "#menu" },
+  { label: "The dunk test", href: "#dunk" },
+  { label: "Visit", href: "#visit" },
+  { label: "Reviews", href: "#reviews" },
+] as const;
+
+/** Stickers in the story. */
+export const stickers = [
+  { value: "11", unit: "min", label: "A batch, never less", shape: "burst" },
+  { value: "3", unit: "×", label: "Boiled up", shape: "circle" },
+  { value: "₹20", unit: "", label: "A cutting", shape: "pill" },
+  { value: "6", unit: "am", label: "First boil", shape: "square" },
+] as const;
+
+export const stages = ["Spiced", "Steeped", "Milked", "Boiled", "Poured", "Dunked", "Served"] as const;
+
+/** What goes in the pan, in the order it goes in. */
+export const spices = [
+  { id: "ginger", name: "Ginger", note: "pounded, not grated" },
+  { id: "cardamom", name: "Green cardamom", note: "pods split by hand" },
+  { id: "clove", name: "Clove", note: "three, no more" },
+  { id: "cinnamon", name: "Cinnamon", note: "one curl of bark" },
+  { id: "pepper", name: "Black pepper", note: "for the back of the throat" },
+  { id: "tea", name: "Assam CTC", note: "two heaped spoons" },
+] as const;
+
+export type ItemId = "chai" | "biscuits" | "bun" | "samosa" | "cappuccino" | "filter";
+export type MenuItem = {
+  id: ItemId;
+  name: string;
+  sub: string;
+  notes: string;
+  tags: string[];
+  price: number;
+  unit: string;
+  tint: string;
+  /** what tapping the card does */
+  verb: string;
+  cheer: string;
+};
+
+/** The counter — every one of these is a live 3D model on the page. */
+export const menu: MenuItem[] = [
+  { id: "chai", name: "Cutting Chai", sub: "Masala · 90 ml", notes: "Half a glass, twice the strength. Ginger-forward, boiled up three times and poured from as high as the arm goes.", tags: ["Ginger", "Cardamom", "Strong"], price: 20, unit: "glass", tint: "#f4dcb8", verb: "Tap to swirl", cheer: "ek cutting!" },
+  { id: "biscuits", name: "Glucose Biscuits", sub: "Baked in-house · stack of 6", notes: "Malty, barely sweet, and engineered for exactly three seconds in hot chai. We tested. A lot.", tags: ["Malty", "Crisp", "Dunkable"], price: 30, unit: "stack", tint: "#f1e2c2", verb: "Tap to fan out", cheer: "crisp!" },
+  { id: "bun", name: "Bun Maska", sub: "Soft bun · white butter", notes: "A pillowy bun, split and loaded with a slab of cold salted butter thick enough to leave teeth marks.", tags: ["Soft", "Buttery", "Salty"], price: 60, unit: "plate", tint: "#f6dfc9", verb: "Tap to open", cheer: "maska!" },
+  { id: "samosa", name: "Punjabi Samosa", sub: "Two · green chutney", notes: "Blistered, hand-folded pastry around potato, peas and crushed coriander seed. Fried to order, never reheated.", tags: ["Crisp", "Spiced", "Hot"], price: 50, unit: "plate", tint: "#eadfbf", verb: "Tap to toss", cheer: "garam!" },
+  { id: "cappuccino", name: "Cappuccino", sub: "Chikmagalur arabica", notes: "For the ones who came with a chai drinker. A double shot, steamed milk and a rosetta poured with real concentration.", tags: ["Double shot", "Silky", "Nutty"], price: 140, unit: "cup", tint: "#eed9c4", verb: "Tap to spin", cheer: "wah!" },
+  { id: "filter", name: "Filter Kaapi", sub: "Tumbler & dabara", notes: "Eighty-twenty peaberry and chicory, dripped overnight, pulled a metre between tumbler and dabara until it froths.", tags: ["Chicory", "Frothy", "Sweet"], price: 70, unit: "tumbler", tint: "#e9dccb", verb: "Tap to pull", cheer: "strong!" },
+];
+
+/** From the kitchen — photographed plates. */
+export const kitchen = [
+  { id: "keema", name: "Keema Pav", sub: "Till 1 pm · or till it runs out", price: 180, photo: "/assets/photos/keema.webp", alt: "A plate of keema pav with buttered pav, onion and lime" },
+  { id: "akuri", name: "Akuri on Toast", sub: "Parsi scrambled eggs", price: 140, photo: "/assets/photos/akuri.webp", alt: "Akuri — spiced scrambled eggs on buttered toast" },
+  { id: "mawa", name: "Mawa Cake", sub: "Cardamom · cashew · almond", price: 90, photo: "/assets/photos/mawa.webp", alt: "Two slices of mawa cake with a glass of chai" },
+  { id: "coldcoffee", name: "Cold Coffee", sub: "Thick, with a chocolate swirl", price: 130, photo: "/assets/photos/coldcoffee.webp", alt: "A tall glass of frothy cold coffee" },
+] as const;
+
+/* ---------------- the dunk test ---------------- */
+export type DunkId = "glucose" | "rusk" | "osmania" | "nankhatai";
+export type Dunkable = { id: DunkId; name: string; sub: string; /** seconds it survives in hot chai */ limit: number; /** ideal window [from, to] in seconds */ sweet: [number, number]; note: string };
+export const dunkables: Dunkable[] = [
+  { id: "glucose", name: "Glucose", sub: "The classic", limit: 4, sweet: [2.4, 3.6], note: "Three seconds. It forgives nothing after four." },
+  { id: "rusk", name: "Rusk", sub: "Twice baked", limit: 8, sweet: [4.5, 7], note: "Built like a brick. Give it time or it gives you nothing." },
+  { id: "osmania", name: "Osmania", sub: "Sweet & salty", limit: 5, sweet: [2.8, 4.4], note: "Hyderabad's finest. Patient, but not a saint." },
+  { id: "nankhatai", name: "Nankhatai", sub: "Ghee shortbread", limit: 2.6, sweet: [1.2, 2.2], note: "All ghee, no structure. Blink and it's soup." },
+];
+
+export const visit = [
+  { v: 1400, s: "", l: "Cuttings poured a day" },
+  { v: 11, s: " min", l: "Every batch, start to glass" },
+  { v: 9, s: "", l: "Biscuit jars on the counter" },
+  { v: 17, s: " hrs", l: "Open, every single day" },
+] as const;
+
+export const day = [
+  { t: "6:00", what: "First boil. Ginger gets pounded, the shutters go up." },
+  { t: "8:30", what: "Bun maska comes out of the oven. Office crowd, two deep." },
+  { t: "13:00", what: "Keema pav till it runs out — usually by half past." },
+  { t: "16:30", what: "The rush. Four hundred cuttings in an hour." },
+  { t: "23:00", what: "Last pour. The pan gets scrubbed for tomorrow." },
+] as const;
+
+export const reviews = [
+  { quote: "The chai tastes like the one outside my college gate in 2009, except I can sit down and nobody is honking at me.", name: "Tanvi R.", place: "Colaba" },
+  { quote: "I have lost four glucose biscuits to the dunk test on their website and zero at the actual counter. Three seconds. It works.", name: "Imran S.", place: "Byculla" },
+  { quote: "Bun maska with a slab of butter you could tile a floor with. I come twice a week and I regret nothing.", name: "Karan J.", place: "Churchgate" },
+  { quote: "We hold our Monday stand-up here now. Eleven of us, eleven cuttings, ₹220. Cheapest meeting room in Fort.", name: "Priya N.", place: "Fort" },
+  { quote: "Brought my Chennai in-laws expecting a fight. They ordered a second filter kaapi. That's the review.", name: "Arjun V.", place: "Matunga" },
+] as const;
+
+export const inr = (n: number) => `₹${n.toLocaleString("en-IN")}`;
